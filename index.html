@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A simple calculator for adding two whole numbers.">
+    <title>CyMas — Addition calculator</title>
+    <link rel="stylesheet" href="./src/styles.css">
+    <script type="module" src="./src/app.js"></script>
+  </head>
+  <body>
+    <main>
+      <header>
+        <p class="brand"><span class="brand-mark" aria-hidden="true">+</span> CyMas</p>
+        <p class="eyebrow">THE SIMPLE THINGS, ADDED UP.</p>
+        <h1>A little addition.</h1>
+        <p class="intro">Two whole numbers. One clear answer.</p>
+      </header>
+
+      <section class="card" aria-label="Addition calculator">
+        <form id="calculator" novalidate>
+          <p id="number-help" class="help">Use whole numbers from −1,000,000 to 1,000,000.</p>
+          <div class="operands">
+            <div class="field">
+              <label for="first">First number</label>
+              <input id="first" name="first" type="text" autocomplete="off"
+                spellcheck="false" placeholder="e.g. 12" aria-describedby="number-help first-error">
+              <p id="first-error" class="field-error"></p>
+            </div>
+            <span class="operator" aria-hidden="true">+</span>
+            <div class="field">
+              <label for="second">Second number</label>
+              <input id="second" name="second" type="text" autocomplete="off"
+                spellcheck="false" placeholder="e.g. -7" aria-describedby="number-help second-error">
+              <p id="second-error" class="field-error"></p>
+            </div>
+          </div>
+          <button id="add" type="submit" disabled>Add numbers <span aria-hidden="true">↗</span></button>
+          <p id="error-summary" class="error-summary" role="alert" aria-atomic="true"></p>
+          <noscript><p class="field-error">Enable JavaScript to use this calculator.</p></noscript>
+        </form>
+        <div class="result-panel">
+          <label for="result" class="eyebrow">YOUR RESULT</label>
+          <output id="result" for="first second" role="status" aria-live="polite" aria-atomic="true"></output>
+          <p>Good things start with a sum.</p>
+        </div>
+      </section>
+      <footer>Made for simple sums. Your numbers stay in this browser.</footer>
+    </main>
+  </body>
+</html>

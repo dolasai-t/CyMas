@@ -3,8 +3,8 @@
 A calculator learning project managed through requirements, small work items,
 tests, pull requests, and Engineering Manager review.
 
-**Status:** engineering bootstrap prepared; application scope and stack await
-manager approval. There is no runnable calculator yet.
+**Status:** the approved integer-addition slice works and is verified locally.
+GitHub publication, remote CI, and manager integration review remain pending.
 
 ## Start here
 
@@ -24,20 +24,44 @@ integration approval → merge. Deployment needs separate approval and verificat
 GitHub Issues become the canonical work items when published. The local board
 records drafts and mirrors status; local identifiers are not GitHub issue numbers.
 
-## Current checks
+## Run locally
 
-Run from the repository root with Git and Bash installed:
+Use Node.js **24.21.0**, pinned in `.nvmrc`. If you use nvm, run `nvm install`
+and `nvm use`. There are no npm dependencies to install.
 
 ```sh
-bash scripts/check-repository.sh
+npm start
 ```
 
-The initial CI runs this same repository-hygiene check on PRs and pushes to `main`
-and `codex/**`. It checks required engineering documents and whitespace in tracked
-changes since the initial commit. Stage new files before running locally.
-It does not validate calculator behavior. Application tests and development
-commands will arrive with the approved first slice.
+Open http://127.0.0.1:4173. Stop with Ctrl+C. If the port is busy, stop your earlier
+preview first. The server binds only to loopback and serves an explicit list of
+application assets. Use HTTP; opening `index.html` directly is unsuitable for modules.
 
-No application dependencies, build system, backend, persistence, or deployment
-are configured. The proposed browser application will remain suitable for a
-later GitHub Pages deployment.
+Enter `2` and `3`, then click Add numbers or press Enter to get `5`. Each operand
+must be a whole number between -1,000,000 and 1,000,000. Signs, surrounding
+whitespace, and leading zeros are accepted. Invalid entries show field errors.
+
+## Checks and structure
+
+```sh
+npm run validate
+```
+
+With Node.js, Git, and Bash available, this runs syntax checks, 32 behavioral tests,
+and repository hygiene checks. Stage new files before the hygiene check. CI runs
+the same checks on PRs and pushes to `main` and `codex/**`, including PRs targeting
+the bootstrap branch while the feature is stacked on it.
+
+- `src/calculator.js`: pure validation and exact bounded-integer addition.
+- `src/app.js`: DOM events, errors, and result rendering through text.
+- `src/styles.css` and `index.html`: responsive semantic UI.
+- `test/calculator.test.js`: syntax, ranges, sums, and invalid input coverage.
+- `scripts/serve.js`: local preview server, not production infrastructure.
+
+[Slice review and browser evidence](project/CALC-002-PR.md) includes reproducible
+demo steps. Browser smoke checks are manual, not CI end-to-end tests. Accessibility
+semantics and focus were verified; screen-reader speech has not been tested.
+
+No bundle/build step, runtime dependencies, backend, persistence, or analytics are
+needed. Decimals, other operations, and deployment remain outside this slice.
+GitHub Pages is a separately approved future work item.

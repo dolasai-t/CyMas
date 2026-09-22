@@ -6,7 +6,7 @@ no GitHub issue numbers or PR links have been assigned.
 | ID | Work | State | Depends on |
 | --- | --- | --- | --- |
 | CALC-001 | Bootstrap engineering process and repository CI | Prepared locally; review and publication pending | GitHub write access |
-| CALC-002 | Add two signed whole numbers in a browser | Awaiting manager scope/stack approval | Gate A; CALC-001 foundation |
+| CALC-002 | Add two signed whole numbers in a browser | Locally verified; publication/remote CI/review pending | CALC-001 foundation (available locally) |
 | CALC-003 | Refine remaining basic-calculator requirements | Backlog; not ready | M1 learning and manager priorities |
 | CALC-004 | Prepare first GitHub Pages release | Backlog; not approved for deployment | Working application and Gate C |
 
@@ -40,9 +40,11 @@ check does not establish application correctness. No application build applies.
 Problem: a user needs to enter two numbers and obtain their sum in one simple
 browser interaction. This is the first smallest useful vertical slice.
 
-Status: proposed, blocked on manager approval of scope and technology in Gate A.
+Status: implemented and locally verified; manager approved scope and technology in Gate A on
+2026-09-22 UTC ("go ahead"). Integration and deployment approval remain pending.
 Owner: senior engineer. Suggested label: enhancement. Dependency: CALC-001.
-Branch after approval: `codex/calc-002-integer-addition`.
+Branch: `codex/calc-002-integer-addition`, based on the unmerged bootstrap branch.
+Evidence and prepared PR body: `project/CALC-002-PR.md`.
 
 Acceptance criteria: all seven numbered criteria in `project/PLAN.md` under
 "Product requirement and first slice". Copy that approved contract into the issue
@@ -56,7 +58,7 @@ tests to CI in the same slice. No placeholder passing tests before behavior exis
 
 Done: requirements satisfied, tests and CI verified, demo recorded, README updated,
 self-review complete, PR reviewed and integration explicitly approved by manager.
-Risks: scope and input format pending; numeric expansion needs separate decisions.
+Risks: remote publication pending; numeric expansion needs separate decisions.
 
 ## CALC-003 — Refine remaining basic-calculator requirements
 

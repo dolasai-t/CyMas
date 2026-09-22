@@ -2,49 +2,55 @@
 
 ## Current state
 
-- Repository: `dolasai-t/CyMas`; checkout in `Calculator/CyMas`, not its empty parent.
-- Branch: `codex/bootstrap-engineering`; baseline main commit `54435a9`.
-- CALC-001 bootstrap prepared locally. CALC-002 first slice is awaiting manager
-  approval. CALC-003/004 are backlog proposals.
-- Read all 1,028 lines of `agents.md`. Scope/stack and production deployment
-  require escalation under section 2; section 50 requires a manager review point
-  before implementation; section 47 requires checks and approval before integration.
-- Added README, plan/assessment/requirements/roadmap, work board, GitHub publication
-  instructions, PR template, and initial repository-hygiene CI.
-- No calculator code, tests, application dependencies, or deployment were added.
-- GitHub browser is signed out; `gh` is not installed. Public repository inspection
-  succeeded. No GitHub issues or PR were created; no workflow run is verified.
+- Repository: `dolasai-t/CyMas`; checkout `Calculator/CyMas`, not its empty parent.
+- Branch: `codex/calc-002-integer-addition`, based on unmerged
+  `codex/bootstrap-engineering` (`293b306`). Main remains at `54435a9`.
+- Gate A approved by the manager's "go ahead" on 2026-09-22 UTC; PLAN.md records
+  scope/stack. Integration and production deployment remain unapproved.
+- CALC-001 foundation exists locally. CALC-002 is implemented and locally verified;
+  it is not DONE because publication/remote CI and manager integration are pending.
+- CALC-003/004 remain backlog proposals. The full calculator was not implemented.
+- Read `agents.md` completely in the initial assessment; it is unchanged.
 
-## Verification and review
+## Implementation and evidence
 
-- `bash -n scripts/check-repository.sh`: passed.
-- `bash scripts/check-repository.sh` and staged diff whitespace check: passed.
-- Workflow YAML parsed successfully with system Ruby YAML; Python PyYAML was
-  unavailable, so no package was installed for this one-off verification.
-- Local Markdown file links resolved.
-- Executed the documented draft generator: four separate nonempty issue bodies
-  generated with the first-slice acceptance contract included. Self-review caught
-  and fixed an overly greedy extraction expression before the successful rerun.
-- All documented shell blocks passed Bash syntax validation.
-- Reviewed scope boundaries, CI permissions/action pin, publication commands,
-  and status accuracy; no blocking local findings remain. Remote publication,
-  actual CI, manager scope/stack approval, and integration remain pending.
-- Application tests/build/demo are not applicable until the first slice is
-  approved and built. The original `agents.md` is unchanged.
+- Browser UI adds two signed integers with validation, field errors, keyboard
+  submission, live regions, and responsive layout. Pure logic and DOM code are separate.
+- No application dependencies. Node.js 24.21.0 is pinned; existing system Node 22
+  was left untouched. Official Node 24 archive downloaded to temporary storage
+  and verified against its published SHA-256 before use.
+- `npm run validate` passed: syntax, all 32 behavioral tests, and repository
+  hygiene on Node 24. Workflow YAML, local Markdown links, the four-issue draft
+  generator, publication shell syntax, and staged whitespace checks also passed.
+- Desktop and 320-pixel smoke checks passed: sums, bounds, validation, stale feedback
+  clearing, focus, and recovery. Browser logs had no errors/warnings. See
+  CALC-002-PR.md for evidence and review guidance.
+- Self-review fixed the error live region being hidden while empty. Screen-reader
+  speech was not tested; browser coverage is limited to the in-app browser.
+- No build step applies. Actions has repository/application checks; remote CI has
+  not run. There is no deployment workflow or published site.
+
+## Access and tool limitations
+
+- `gh` is absent; the previously inspected GitHub browser was signed out.
+- Retried Git publishing with a noninteractive dry run. Network access succeeded
+  after sandbox approval, but authentication failed: `could not read Username for
+  'https://github.com': terminal prompts disabled`. No remote writes occurred.
+- Node download and local preview initially hit sandbox restrictions; approved
+  retries succeeded. Preview runs at http://127.0.0.1:4173; restart with `npm start`
+  using Node 24 if it is no longer running.
+- Browser tooling timed out finding an empty hidden alert and did not clear one
+  field with `fill("")`; inspecting the UI and keyboard clearing resolved testing.
+  Those unsuccessful interactions were not treated as passing checks.
 
 ## Next actions
 
-1. Engineering Manager reviews Gate A in PLAN.md and approves or revises browser
-   delivery, plain HTML/CSS/JavaScript, and the integer-addition contract.
-2. Publish the prepared issues and bootstrap draft PR with authenticated GitHub
-   access; GITHUB.md contains exact commands. Record actual URLs and CI results.
-3. After approval, mark CALC-002 ready, create its focused branch, implement only
-   that slice, add behavioral tests/CI checks, demonstrate it, and self-review.
-4. Request manager integration review with actual evidence. Keep deployment for
-   a separately approved CALC-004.
-
-## Risks / deliberate deferrals
-
-The initial CI checks repository hygiene only. Repository settings/protections and
-Pages are unverified. Decimal/rounding policy is undecided. These are explicit
-next-stage decisions, not claims of production readiness.
+1. Establish authenticated GitHub access, publish the four issues and bootstrap
+   PR, then the dependent CALC-002 PR. GITHUB.md contains exact commands;
+   CALC-002-PR.md is the body. Record actual URLs here and in WORKBOARD.md.
+2. Verify CI on GitHub. Review bootstrap before integration, then retarget the
+   first-slice PR to main after bootstrap merge and recheck its diff.
+3. Manager reviews demo, criteria, tests, and remote CI before integration.
+   Implementation approval is not merge approval.
+4. Refine CALC-003 numeric/operation requirements next. Deployment stays gated
+   under CALC-004; no external hosting or cost was introduced.
