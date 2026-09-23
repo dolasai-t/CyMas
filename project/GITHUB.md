@@ -1,10 +1,14 @@
 # GitHub publication and review
 
-Status: prepared locally. No issues, labels, pull request, branch rules, or Pages
-settings were changed remotely. GitHub CLI is absent and the inspected browser
-session is signed out. A noninteractive dry-run push also failed with
-`could not read Username for 'https://github.com': terminal prompts disabled`.
-Authenticated write access is required to finish publication.
+Status: issues [#1](https://github.com/dolasai-t/CyMas/issues/1),
+[#2](https://github.com/dolasai-t/CyMas/issues/2),
+[#3](https://github.com/dolasai-t/CyMas/issues/3), and
+[#4](https://github.com/dolasai-t/CyMas/issues/4) are published. Do not run the issue
+creation commands again. Branch pushes, PR publication, and remote CI still await
+completion of GitHub CLI authentication. Browser sign-in succeeded. CLI OAuth
+scopes were explicitly approved; the fresh login awaits GitHub email verification.
+The first token exchange failed with a connection reset. No merge, deployment,
+branch protection, or Pages setting has been changed.
 
 ## Proposed setup
 

@@ -7,8 +7,12 @@
   `codex/bootstrap-engineering` (`293b306`). Main remains at `54435a9`.
 - Gate A approved by the manager's "go ahead" on 2026-09-22 UTC; PLAN.md records
   scope/stack. Integration and production deployment remain unapproved.
-- CALC-001 foundation exists locally. CALC-002 is implemented and locally verified;
-  it is not DONE because publication/remote CI and manager integration are pending.
+- All four issues are published: [#1](https://github.com/dolasai-t/CyMas/issues/1),
+  [#2](https://github.com/dolasai-t/CyMas/issues/2),
+  [#3](https://github.com/dolasai-t/CyMas/issues/3), and
+  [#4](https://github.com/dolasai-t/CyMas/issues/4).
+- CALC-002 is implemented and locally verified; branches/PRs and remote CI remain
+  pending GitHub CLI authentication. It is not DONE; manager integration is pending.
 - CALC-003/004 remain backlog proposals. The full calculator was not implemented.
 - Read `agents.md` completely in the initial assessment; it is unchanged.
 
@@ -32,10 +36,18 @@
 
 ## Access and tool limitations
 
-- `gh` is absent; the previously inspected GitHub browser was signed out.
+- Browser GitHub sign-in now works. Downloaded and checksum-verified official
+  GitHub CLI 2.101.0 to `/private/tmp/cymas-gh/gh_2.101.0_macOS_arm64/bin/gh`.
+  Its session uses `GH_CONFIG_DIR=/private/tmp/cymas-gh-auth`; no global Git
+  credential configuration was changed. Authentication completion is pending.
+- Manager explicitly authorized GitHub CLI OAuth scopes (repository, workflow,
+  gist, organization read). The first token exchange failed with a connection
+  reset. A fresh device login is awaiting GitHub email identity verification.
+  Never record tokens or email verification codes in repository files.
 - Retried Git publishing with a noninteractive dry run. Network access succeeded
   after sandbox approval, but authentication failed: `could not read Username for
-  'https://github.com': terminal prompts disabled`. No remote writes occurred.
+  'https://github.com': terminal prompts disabled`. Issues have since been
+  published using the browser; no branch push or PR creation has succeeded yet.
 - Node download and local preview initially hit sandbox restrictions; approved
   retries succeeded. Preview runs at http://127.0.0.1:4173; restart with `npm start`
   using Node 24 if it is no longer running.
@@ -45,8 +57,9 @@
 
 ## Next actions
 
-1. Establish authenticated GitHub access, publish the four issues and bootstrap
-   PR, then the dependent CALC-002 PR. GITHUB.md contains exact commands;
+1. Complete GitHub CLI authentication, publish bootstrap and feature branches,
+   then create the bootstrap and dependent CALC-002 PRs. Issues #1–#4 already
+   exist; do not recreate them. GITHUB.md contains exact commands;
    CALC-002-PR.md is the body. Record actual URLs here and in WORKBOARD.md.
 2. Verify CI on GitHub. Review bootstrap before integration, then retarget the
    first-slice PR to main after bootstrap merge and recheck its diff.

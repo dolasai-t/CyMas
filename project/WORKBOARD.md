@@ -1,14 +1,14 @@
 # Work board
 
-GitHub Issues will be canonical when published. These are local draft identifiers;
-no GitHub issue numbers or PR links have been assigned.
+GitHub Issues are canonical. CALC identifiers map to the published issues below.
+Pull-request publication and remote CI are in progress.
 
 | ID | Work | State | Depends on |
 | --- | --- | --- | --- |
-| CALC-001 | Bootstrap engineering process and repository CI | Prepared locally; review and publication pending | GitHub write access |
-| CALC-002 | Add two signed whole numbers in a browser | Locally verified; publication/remote CI/review pending | CALC-001 foundation (available locally) |
-| CALC-003 | Refine remaining basic-calculator requirements | Backlog; not ready | M1 learning and manager priorities |
-| CALC-004 | Prepare first GitHub Pages release | Backlog; not approved for deployment | Working application and Gate C |
+| [CALC-001 / #1](https://github.com/dolasai-t/CyMas/issues/1) | Bootstrap engineering process and repository CI | Prepared locally; review and publication pending | GitHub write access |
+| [CALC-002 / #2](https://github.com/dolasai-t/CyMas/issues/2) | Add two signed whole numbers in a browser | Locally verified; publication/remote CI/review pending | CALC-001 foundation (available locally) |
+| [CALC-003 / #3](https://github.com/dolasai-t/CyMas/issues/3) | Refine remaining basic-calculator requirements | Backlog; not ready | M1 learning and manager priorities |
+| [CALC-004 / #4](https://github.com/dolasai-t/CyMas/issues/4) | Prepare first GitHub Pages release | Backlog; not approved for deployment | Working application and Gate C |
 
 States: Draft → Awaiting approval → Ready → In progress → In review → Done.
 Blocked work retains a reason. Publish using `project/GITHUB.md`, then replace
@@ -26,7 +26,7 @@ Owner: senior engineer. Manager: dolasai-t. Suggested label: documentation.
 Acceptance criteria:
 - [ ] Assessment distinguishes inspected state from inaccessible settings.
 - [ ] Requirements, roadmap, and approval gates are recorded.
-- [ ] Initial issues exist on GitHub and the local board links to them.
+- [x] Initial issues exist on GitHub and the local board links to them.
 - [ ] Repository check passes locally and in GitHub Actions on the bootstrap PR.
 - [ ] Self-review and manager review instructions accompany a focused PR.
 - [ ] No calculator implementation, main merge, or deployment occurs prematurely.
