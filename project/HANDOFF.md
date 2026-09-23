@@ -2,49 +2,48 @@
 
 ## Current state
 
-- Repository: `dolasai-t/CyMas`; checkout in `Calculator/CyMas`, not its empty parent.
-- Branch: `codex/bootstrap-engineering`; baseline main commit `54435a9`.
-- CALC-001 bootstrap prepared locally. CALC-002 first slice is awaiting manager
-  approval. CALC-003/004 are backlog proposals.
-- Read all 1,028 lines of `agents.md`. Scope/stack and production deployment
-  require escalation under section 2; section 50 requires a manager review point
-  before implementation; section 47 requires checks and approval before integration.
-- Added README, plan/assessment/requirements/roadmap, work board, GitHub publication
-  instructions, PR template, and initial repository-hygiene CI.
-- No calculator code, tests, application dependencies, or deployment were added.
-- GitHub browser is signed out; `gh` is not installed. Public repository inspection
-  succeeded. No GitHub issues or PR were created; no workflow run is verified.
+- Repository: `dolasai-t/CyMas`; checkout `Calculator/CyMas`, not its empty parent.
+- Branch: `codex/calc-002-integer-addition`, tracking the matching origin branch.
+- [Bootstrap PR #5](https://github.com/dolasai-t/CyMas/pull/5) targets main from
+  `codex/bootstrap-engineering` (`293b306`).
+- [First-slice PR #6](https://github.com/dolasai-t/CyMas/pull/6) targets the unmerged
+  bootstrap branch. Both PRs are drafts; main remains at `54435a9`.
+- Issues [#1](https://github.com/dolasai-t/CyMas/issues/1) through
+  [#4](https://github.com/dolasai-t/CyMas/issues/4) are published; WORKBOARD.md maps
+  identifiers, scope, and status. CALC-003/004 remain backlog proposals.
+- Gate A scope/stack approval is recorded in PLAN.md. Integration and deployment
+  remain unapproved; no merge, deployment, Pages, or branch-rule changes occurred.
 
 ## Verification and review
 
-- `bash -n scripts/check-repository.sh`: passed.
-- `bash scripts/check-repository.sh` and staged diff whitespace check: passed.
-- Workflow YAML parsed successfully with system Ruby YAML; Python PyYAML was
-  unavailable, so no package was installed for this one-off verification.
-- Local Markdown file links resolved.
-- Executed the documented draft generator: four separate nonempty issue bodies
-  generated with the first-slice acceptance contract included. Self-review caught
-  and fixed an overly greedy extraction expression before the successful rerun.
-- All documented shell blocks passed Bash syntax validation.
-- Reviewed scope boundaries, CI permissions/action pin, publication commands,
-  and status accuracy; no blocking local findings remain. Remote publication,
-  actual CI, manager scope/stack approval, and integration remain pending.
-- Application tests/build/demo are not applicable until the first slice is
-  approved and built. The original `agents.md` is unchanged.
+- Node 24.21.0: all 32 behavioral tests, syntax and repository checks passed locally.
+- Desktop and 320-pixel browser checks passed: sums, bounds, validation, focus,
+  stale feedback, and recovery. Live-region semantics checked; speech not tested.
+- Bootstrap CI passed at `293b306` in
+  [run 35931545281](https://github.com/dolasai-t/CyMas/actions/runs/35931545281).
+- Feature CI passed at `f52ecf8` in
+  [run 35931547776](https://github.com/dolasai-t/CyMas/actions/runs/35931547776).
+  Inspected logs confirm 32 passing tests, zero failures, and repository checks.
+- This documentation synchronization follows those runs. Verify the latest PR
+  checks for any newer head. No build applies to directly served static assets.
+- Self-review has no blocking local findings. Review guidance: CALC-002-PR.md.
+  `agents.md` is unchanged. The full calculator was not implemented.
+
+## GitHub access
+
+- Browser authentication works. Official CLI 2.101.0 was downloaded and checksum
+  verified; executable and temporary configuration paths are in GITHUB.md.
+- User explicitly approved CLI OAuth permissions and completed GitHub's identity
+  check. The first token exchange failed with a connection reset; a fresh login
+  succeeded. No credentials were copied into repository files or printed.
+- No global Git credential configuration changed. Push used a command-scoped CLI
+  credential helper. Temporary CLI/configuration may need restoration after cleanup.
 
 ## Next actions
 
-1. Engineering Manager reviews Gate A in PLAN.md and approves or revises browser
-   delivery, plain HTML/CSS/JavaScript, and the integer-addition contract.
-2. Publish the prepared issues and bootstrap draft PR with authenticated GitHub
-   access; GITHUB.md contains exact commands. Record actual URLs and CI results.
-3. After approval, mark CALC-002 ready, create its focused branch, implement only
-   that slice, add behavioral tests/CI checks, demonstrate it, and self-review.
-4. Request manager integration review with actual evidence. Keep deployment for
-   a separately approved CALC-004.
-
-## Risks / deliberate deferrals
-
-The initial CI checks repository hygiene only. Repository settings/protections and
-Pages are unverified. Decimal/rounding policy is undecided. These are explicit
-next-stage decisions, not claims of production readiness.
+1. Manager reviews bootstrap PR #5 and its CI before authorizing integration.
+2. After bootstrap integration, retarget PR #6 to main, reconcile ancestry if
+   needed, inspect the focused diff, and verify checks again before its approval.
+3. Keep #1/#2 open until manager-approved integration; do not infer merge approval
+   from implementation or publishing approval. Mark PRs ready only when appropriate.
+4. Refine CALC-003 requirements next. Production remains gated under CALC-004.

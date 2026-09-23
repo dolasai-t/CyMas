@@ -1,8 +1,26 @@
 # GitHub publication and review
 
-Status: prepared locally. No issues, labels, pull request, branch rules, or Pages
-settings were changed remotely. GitHub CLI is absent and the inspected browser
-session is signed out; authenticated write access has not been established.
+Status: all four issues and both draft PRs are published. GitHub Issues are the
+canonical work items. Do not rerun the creation commands below; they are retained
+as the original publication procedure.
+
+- Issues: [#1](https://github.com/dolasai-t/CyMas/issues/1),
+  [#2](https://github.com/dolasai-t/CyMas/issues/2),
+  [#3](https://github.com/dolasai-t/CyMas/issues/3),
+  [#4](https://github.com/dolasai-t/CyMas/issues/4).
+- Bootstrap: [draft PR #5](https://github.com/dolasai-t/CyMas/pull/5), targeting main.
+- First slice: [draft PR #6](https://github.com/dolasai-t/CyMas/pull/6), targeting
+  the bootstrap branch. Both published revisions passed CI; WORKBOARD.md links evidence.
+- No merge, deployment, branch protection, or Pages setting was changed.
+
+## Current CLI access
+
+The official CLI was checksum-verified and authenticated after explicit manager
+approval of its OAuth scopes and GitHub email identity verification. Temporary
+executable: `/private/tmp/cymas-gh/gh_2.101.0_macOS_arm64/bin/gh`; use
+`GH_CONFIG_DIR=/private/tmp/cymas-gh-auth` with it. No global Git credential helper
+was changed. Temporary files may disappear; if unavailable, install the official
+CLI and authenticate again. Never write credentials into this repository.
 
 ## Proposed setup
 
@@ -56,7 +74,7 @@ for match in re.finditer(r'^## (CALC-\d+) — ([^\n]+)\n(.*?)(?=^## |\Z)', board
     if key == 'CALC-002':
         contract = plan.split('## Product requirement and first slice\n', 1)[1]
         contract = contract.split('## Technology decision', 1)[0]
-        body += '\n## Proposed acceptance contract (approval pending)\n' + contract
+        body += '\n## Approved acceptance contract (Gate A approved)\n' + contract
     (draft_dir / (key + '.md')).write_text(body.strip() + '\n')
 print('Draft directory:', draft_dir)
 PY
@@ -65,7 +83,8 @@ PY
 Set `draft_dir` to the printed directory. Run each create command once; keep the
 returned URLs and record them in WORKBOARD.md and HANDOFF.md. If interrupted,
 inspect the issue list before retrying. Initial requirements are explicitly
-proposed; publishing an issue does not approve implementation.
+recorded in PLAN.md; CALC-002 Gate A is approved. Publishing an issue does not
+constitute integration or deployment approval.
 
 ```sh
 read -r draft_dir
@@ -97,8 +116,9 @@ criteria, PR template, repository hygiene CI, and a resumable handoff.
 Related work: $bootstrap_issue_url
 
 ## Scope and verification
-No calculator behavior is implemented. The application stack and first slice
-await Engineering Manager approval. No merge or deployment is authorized here.
+This bootstrap branch contains no calculator behavior. The manager has since
+approved the stack and CALC-002 scope, implemented on a separate dependent branch.
+No merge or deployment is authorized here.
 
 Local verification: run bash scripts/check-repository.sh and inspect the result
 before marking this PR ready. Application tests/build: not applicable yet.
@@ -128,3 +148,24 @@ If publishing through Codex, attach the created PR to the task as well.
 References: [creating issues](https://cli.github.com/manual/gh_issue_create),
 [creating PRs](https://cli.github.com/manual/gh_pr_create),
 [required reviews](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches).
+
+## Publish the first slice as a dependent PR
+
+The feature branch includes the unmerged bootstrap. Create the bootstrap PR
+against `main` and the CALC-002 PR against the bootstrap branch for focused reviews.
+The feature workflow checks PRs targeting either branch. After bootstrap approval
+and merge, retarget the feature PR to `main`, inspect its diff, and rerun checks.
+If the bootstrap is squash-merged, reconcile its ancestry before retargeting so
+the feature diff does not repeat bootstrap changes. Do not merge without approval.
+
+From `codex/calc-002-integer-addition`, after issues and the bootstrap PR exist:
+
+```sh
+git push -u origin codex/calc-002-integer-addition
+gh pr create --repo dolasai-t/CyMas --base codex/bootstrap-engineering --head codex/calc-002-integer-addition --draft --title 'CALC-002: Add two signed whole numbers in the browser' --body-file project/CALC-002-PR.md
+gh pr view --repo dolasai-t/CyMas codex/calc-002-integer-addition --json number,url,state,headRefName
+gh pr checks --repo dolasai-t/CyMas codex/calc-002-integer-addition
+```
+
+Add the actual CALC-002 issue link to the PR and record both PR URLs in the work
+board and handoff. The prepared PR body intentionally contains no invented number.

@@ -1,0 +1,13 @@
+{
+  "name": "cymas-calculator",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": "24.x" },
+  "scripts": {
+    "start": "node scripts/serve.js",
+    "test": "node --test",
+    "check": "node --check src/calculator.js && node --check src/app.js && node --check scripts/serve.js && node --check test/calculator.test.js",
+    "validate": "npm run check && npm test && bash scripts/check-repository.sh"
+  }
+}

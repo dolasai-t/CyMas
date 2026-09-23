@@ -2,7 +2,7 @@ name: CI
 
 on:
   pull_request:
-    branches: [main]
+    branches: [main, 'codex/bootstrap-engineering']
   push:
     branches: [main, 'codex/**']
   workflow_dispatch:
@@ -23,3 +23,22 @@ jobs:
           persist-credentials: false
       - name: Check repository hygiene
         run: bash scripts/check-repository.sh
+
+  application-checks:
+    name: Application checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Set up Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: .nvmrc
+          package-manager-cache: false
+      - name: Check JavaScript syntax
+        run: npm run check
+      - name: Test calculator behavior
+        run: npm test

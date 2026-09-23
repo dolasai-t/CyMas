@@ -1,6 +1,7 @@
 # Bootstrap proposal
 
-Status: proposed; scope and stack are not yet approved.
+Status: Gate A approved by the Engineering Manager on 2026-09-22 UTC with
+"go ahead" in response to the explicit stack and integer-slice approval request.
 
 ## Repository assessment
 
@@ -29,7 +30,7 @@ Recommended first slice: enter two signed whole numbers, submit an Add form,
 and see their sum or a clear validation error. This is a complete user workflow
 across UI, validation, arithmetic, and result rendering.
 
-Proposed acceptance criteria (CALC-002):
+Approved acceptance criteria (CALC-002):
 
 1. Two visibly labeled inputs and an Add button work with keyboard and pointer.
    Enter submits the form. A heading identifies the calculator.
@@ -53,11 +54,11 @@ Proposed acceptance criteria (CALC-002):
 
 The first slice excludes subtraction, multiplication, division, decimal input,
 expression parsing, calculator-style keypad/state, history, memory, themes,
-authentication, and deployment. These exclusions are scope proposals, not
-approved product decisions. Decimal representation and rounding require a later
+authentication, and deployment. These exclusions are part of the approved first
+slice. Decimal representation and rounding require a later
 explicit requirement before implementation.
 
-## Technology decision for manager approval
+## Technology decision (approved recommendation)
 
 | Option | Benefit | Cost / consequence |
 | --- | --- | --- |
@@ -65,18 +66,20 @@ explicit requirement before implementation.
 | React and TypeScript | Component and type-system practice from day one | More dependencies, build configuration, and concepts for a two-input form |
 | Python command-line calculator | Smallest non-browser implementation | No browser UI or Pages application; changes the proposed product experience |
 
-Recommended architecture: one semantic HTML form, a stylesheet, a pure JavaScript
+Approved architecture: one semantic HTML form, a stylesheet, a pure JavaScript
 validation/addition module, and a thin DOM adapter. Input text → validation → sum
 → text output. Render using text content, not HTML interpolation. No backend or
 data storage is needed. Use Node.js 24 for development and its built-in test
-runner after approval; the browser does not need Node. No bundler is proposed.
-Verify the exact supported runtime patch before pinning the application tooling.
+runner; the browser does not need Node. No bundler is needed. Runtime 24.21.0 was
+verified from Node's official distribution, SHA-256 checked locally, and pinned
+in `.nvmrc`. No global Node installation was changed.
 
-Proposed application layout: `index.html`, `src/calculator.js`, `src/app.js`,
-`src/styles.css`, and `test/calculator.test.js`. Proposed checks: Node syntax
+Application layout: `index.html`, `src/calculator.js`, `src/app.js`,
+`src/styles.css`, and `test/calculator.test.js`. Checks: Node syntax
 checks, behavioral unit tests, and a documented browser smoke test. A test framework,
 formatter, or linter dependency can be evaluated when it solves a concrete need.
-The bootstrap CI uses Bash/Git only and does not select the application stack.
+The bootstrap CI uses Bash/Git; CALC-002 adds a separate application job for syntax
+and behavioral tests. The local Node server uses an asset allowlist and loopback.
 
 ## Roadmap
 
@@ -93,7 +96,8 @@ This is a directional sequence, not a schedule or permission to implement M2/M3.
 
 Ready means a clear user problem, behavior, acceptance criteria, known
 dependencies/risks, and recorded manager decisions for material scope/stack
-choices. CALC-002 is **awaiting approval**, not READY.
+choices. CALC-002 met this gate after the manager approved the documented scope
+and stack; implementation proceeds on `codex/calc-002-integer-addition`.
 
 Done means criteria met, relevant checks and tests passed, demonstrated UI where
 applicable, documentation and handoff current, security considered, self-review
@@ -101,7 +105,7 @@ completed with no blocking findings, a linked PR, verified CI, and manager appro
 before integration. Record the merge before closing the work item. Deployed work
 also requires verified deployment. Mark non-applicable checks explicitly.
 
-Gate A (now): approve or revise browser delivery, the recommended stack, and the
+Gate A (approved): browser delivery, the recommended stack, and the
 CALC-002 whole-number addition contract. Alternative: start with decimals or a
 keypad, which requires more numeric/state rules and a larger first review.
 
@@ -111,8 +115,10 @@ approve integration. A local commit or draft PR is not merge approval.
 Gate C: approve GitHub Pages production configuration and publication once the
 application is deployable. Do not enable automatic deployment in this bootstrap.
 
-Manager decision record: **pending**. Record the actual decision and date here
-before beginning CALC-002. Do not infer approval from elapsed time.
+Manager decision record: **Gate A approved, 2026-09-22 UTC**. The manager replied
+"go ahead" to the recommendation of plain HTML/CSS/JavaScript, Node's built-in
+test runner, and two labeled inputs with an Add button and the bounded signed
+integer contract. Gates B (integration) and C (production deployment) remain pending.
 
 ## References
 
