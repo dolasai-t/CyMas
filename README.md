@@ -4,7 +4,9 @@ A calculator learning project managed through requirements, small work items,
 tests, pull requests, and Engineering Manager review.
 
 **Status:** the approved integer-addition slice works and is verified locally.
-GitHub publication, remote CI, and manager integration review remain pending.
+Published in draft PRs [#5](https://github.com/dolasai-t/CyMas/pull/5) and
+[#6](https://github.com/dolasai-t/CyMas/pull/6), with successful CI on their recorded
+publication revisions. Manager integration review remains pending.
 
 ## Start here
 
@@ -21,8 +23,8 @@ Issue with acceptance criteria → manager approval where required → focused
 `codex/` branch → implementation and tests → self-review → PR and CI → manager
 integration approval → merge. Deployment needs separate approval and verification.
 
-GitHub Issues become the canonical work items when published. The local board
-records drafts and mirrors status; local identifiers are not GitHub issue numbers.
+GitHub Issues are the canonical work items. The local board links each CALC
+identifier to its actual issue and mirrors lifecycle status.
 
 ## Run locally
 

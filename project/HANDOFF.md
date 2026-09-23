@@ -3,67 +3,47 @@
 ## Current state
 
 - Repository: `dolasai-t/CyMas`; checkout `Calculator/CyMas`, not its empty parent.
-- Branch: `codex/calc-002-integer-addition`, based on unmerged
-  `codex/bootstrap-engineering` (`293b306`). Main remains at `54435a9`.
-- Gate A approved by the manager's "go ahead" on 2026-09-22 UTC; PLAN.md records
-  scope/stack. Integration and production deployment remain unapproved.
-- All four issues are published: [#1](https://github.com/dolasai-t/CyMas/issues/1),
-  [#2](https://github.com/dolasai-t/CyMas/issues/2),
-  [#3](https://github.com/dolasai-t/CyMas/issues/3), and
-  [#4](https://github.com/dolasai-t/CyMas/issues/4).
-- CALC-002 is implemented and locally verified; branches/PRs and remote CI remain
-  pending GitHub CLI authentication. It is not DONE; manager integration is pending.
-- CALC-003/004 remain backlog proposals. The full calculator was not implemented.
-- Read `agents.md` completely in the initial assessment; it is unchanged.
+- Branch: `codex/calc-002-integer-addition`, tracking the matching origin branch.
+- [Bootstrap PR #5](https://github.com/dolasai-t/CyMas/pull/5) targets main from
+  `codex/bootstrap-engineering` (`293b306`).
+- [First-slice PR #6](https://github.com/dolasai-t/CyMas/pull/6) targets the unmerged
+  bootstrap branch. Both PRs are drafts; main remains at `54435a9`.
+- Issues [#1](https://github.com/dolasai-t/CyMas/issues/1) through
+  [#4](https://github.com/dolasai-t/CyMas/issues/4) are published; WORKBOARD.md maps
+  identifiers, scope, and status. CALC-003/004 remain backlog proposals.
+- Gate A scope/stack approval is recorded in PLAN.md. Integration and deployment
+  remain unapproved; no merge, deployment, Pages, or branch-rule changes occurred.
 
-## Implementation and evidence
+## Verification and review
 
-- Browser UI adds two signed integers with validation, field errors, keyboard
-  submission, live regions, and responsive layout. Pure logic and DOM code are separate.
-- No application dependencies. Node.js 24.21.0 is pinned; existing system Node 22
-  was left untouched. Official Node 24 archive downloaded to temporary storage
-  and verified against its published SHA-256 before use.
-- `npm run validate` passed: syntax, all 32 behavioral tests, and repository
-  hygiene on Node 24. Workflow YAML, local Markdown links, the four-issue draft
-  generator, publication shell syntax, and staged whitespace checks also passed.
-- Desktop and 320-pixel smoke checks passed: sums, bounds, validation, stale feedback
-  clearing, focus, and recovery. Browser logs had no errors/warnings. See
-  CALC-002-PR.md for evidence and review guidance.
-- Self-review fixed the error live region being hidden while empty. Screen-reader
-  speech was not tested; browser coverage is limited to the in-app browser.
-- No build step applies. Actions has repository/application checks; remote CI has
-  not run. There is no deployment workflow or published site.
+- Node 24.21.0: all 32 behavioral tests, syntax and repository checks passed locally.
+- Desktop and 320-pixel browser checks passed: sums, bounds, validation, focus,
+  stale feedback, and recovery. Live-region semantics checked; speech not tested.
+- Bootstrap CI passed at `293b306` in
+  [run 35931545281](https://github.com/dolasai-t/CyMas/actions/runs/35931545281).
+- Feature CI passed at `f52ecf8` in
+  [run 35931547776](https://github.com/dolasai-t/CyMas/actions/runs/35931547776).
+  Inspected logs confirm 32 passing tests, zero failures, and repository checks.
+- This documentation synchronization follows those runs. Verify the latest PR
+  checks for any newer head. No build applies to directly served static assets.
+- Self-review has no blocking local findings. Review guidance: CALC-002-PR.md.
+  `agents.md` is unchanged. The full calculator was not implemented.
 
-## Access and tool limitations
+## GitHub access
 
-- Browser GitHub sign-in now works. Downloaded and checksum-verified official
-  GitHub CLI 2.101.0 to `/private/tmp/cymas-gh/gh_2.101.0_macOS_arm64/bin/gh`.
-  Its session uses `GH_CONFIG_DIR=/private/tmp/cymas-gh-auth`; no global Git
-  credential configuration was changed. Authentication completion is pending.
-- Manager explicitly authorized GitHub CLI OAuth scopes (repository, workflow,
-  gist, organization read). The first token exchange failed with a connection
-  reset. A fresh device login is awaiting GitHub email identity verification.
-  Never record tokens or email verification codes in repository files.
-- Retried Git publishing with a noninteractive dry run. Network access succeeded
-  after sandbox approval, but authentication failed: `could not read Username for
-  'https://github.com': terminal prompts disabled`. Issues have since been
-  published using the browser; no branch push or PR creation has succeeded yet.
-- Node download and local preview initially hit sandbox restrictions; approved
-  retries succeeded. Preview runs at http://127.0.0.1:4173; restart with `npm start`
-  using Node 24 if it is no longer running.
-- Browser tooling timed out finding an empty hidden alert and did not clear one
-  field with `fill("")`; inspecting the UI and keyboard clearing resolved testing.
-  Those unsuccessful interactions were not treated as passing checks.
+- Browser authentication works. Official CLI 2.101.0 was downloaded and checksum
+  verified; executable and temporary configuration paths are in GITHUB.md.
+- User explicitly approved CLI OAuth permissions and completed GitHub's identity
+  check. The first token exchange failed with a connection reset; a fresh login
+  succeeded. No credentials were copied into repository files or printed.
+- No global Git credential configuration changed. Push used a command-scoped CLI
+  credential helper. Temporary CLI/configuration may need restoration after cleanup.
 
 ## Next actions
 
-1. Complete GitHub CLI authentication, publish bootstrap and feature branches,
-   then create the bootstrap and dependent CALC-002 PRs. Issues #1–#4 already
-   exist; do not recreate them. GITHUB.md contains exact commands;
-   CALC-002-PR.md is the body. Record actual URLs here and in WORKBOARD.md.
-2. Verify CI on GitHub. Review bootstrap before integration, then retarget the
-   first-slice PR to main after bootstrap merge and recheck its diff.
-3. Manager reviews demo, criteria, tests, and remote CI before integration.
-   Implementation approval is not merge approval.
-4. Refine CALC-003 numeric/operation requirements next. Deployment stays gated
-   under CALC-004; no external hosting or cost was introduced.
+1. Manager reviews bootstrap PR #5 and its CI before authorizing integration.
+2. After bootstrap integration, retarget PR #6 to main, reconcile ancestry if
+   needed, inspect the focused diff, and verify checks again before its approval.
+3. Keep #1/#2 open until manager-approved integration; do not infer merge approval
+   from implementation or publishing approval. Mark PRs ready only when appropriate.
+4. Refine CALC-003 requirements next. Production remains gated under CALC-004.

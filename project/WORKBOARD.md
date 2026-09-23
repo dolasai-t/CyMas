@@ -1,18 +1,20 @@
 # Work board
 
 GitHub Issues are canonical. CALC identifiers map to the published issues below.
-Pull-request publication and remote CI are in progress.
+Draft PRs: [bootstrap #5](https://github.com/dolasai-t/CyMas/pull/5) and
+[first slice #6](https://github.com/dolasai-t/CyMas/pull/6). Both passed CI at the
+recorded publication revisions; integration approval remains pending.
 
 | ID | Work | State | Depends on |
 | --- | --- | --- | --- |
-| [CALC-001 / #1](https://github.com/dolasai-t/CyMas/issues/1) | Bootstrap engineering process and repository CI | Prepared locally; review and publication pending | GitHub write access |
-| [CALC-002 / #2](https://github.com/dolasai-t/CyMas/issues/2) | Add two signed whole numbers in a browser | Locally verified; publication/remote CI/review pending | CALC-001 foundation (available locally) |
+| [CALC-001 / #1](https://github.com/dolasai-t/CyMas/issues/1) | Bootstrap engineering process and repository CI | In review: PR #5, CI passed | Manager integration approval |
+| [CALC-002 / #2](https://github.com/dolasai-t/CyMas/issues/2) | Add two signed whole numbers in a browser | In review: PR #6, CI passed | Bootstrap integration; manager approval |
 | [CALC-003 / #3](https://github.com/dolasai-t/CyMas/issues/3) | Refine remaining basic-calculator requirements | Backlog; not ready | M1 learning and manager priorities |
 | [CALC-004 / #4](https://github.com/dolasai-t/CyMas/issues/4) | Prepare first GitHub Pages release | Backlog; not approved for deployment | Working application and Gate C |
 
 States: Draft → Awaiting approval → Ready → In progress → In review → Done.
-Blocked work retains a reason. Publish using `project/GITHUB.md`, then replace
-draft status with actual issue URLs. Keep proposals clearly labeled in GitHub.
+Blocked work retains a reason. Keep issue/PR status synchronized using
+`project/GITHUB.md`. CALC-003/004 remain proposals, not approved implementation.
 
 ## CALC-001 — Bootstrap engineering process and repository CI
 
@@ -24,15 +26,15 @@ criteria, initial work items, PR template, stack-neutral repository CI, and hand
 Owner: senior engineer. Manager: dolasai-t. Suggested label: documentation.
 
 Acceptance criteria:
-- [ ] Assessment distinguishes inspected state from inaccessible settings.
-- [ ] Requirements, roadmap, and approval gates are recorded.
+- [x] Assessment distinguishes inspected state from inaccessible settings.
+- [x] Requirements, roadmap, and approval gates are recorded.
 - [x] Initial issues exist on GitHub and the local board links to them.
-- [ ] Repository check passes locally and in GitHub Actions on the bootstrap PR.
-- [ ] Self-review and manager review instructions accompany a focused PR.
-- [ ] No calculator implementation, main merge, or deployment occurs prematurely.
+- [x] Repository check passes locally and in GitHub Actions on the bootstrap PR.
+- [x] Self-review and manager review instructions accompany a focused PR.
+- [x] No calculator implementation, main merge, or deployment occurs prematurely.
 
 Verification: inspect documents and PR template, run the repository check, inspect
-the actual Actions result. Risks: publication/authentication unavailable; this
+the actual Actions result. Risks: manager integration approval pending; this
 check does not establish application correctness. No application build applies.
 
 ## CALC-002 — Add two signed whole numbers in a browser
@@ -40,7 +42,7 @@ check does not establish application correctness. No application build applies.
 Problem: a user needs to enter two numbers and obtain their sum in one simple
 browser interaction. This is the first smallest useful vertical slice.
 
-Status: implemented and locally verified; manager approved scope and technology in Gate A on
+Status: in review in PR #6 with successful CI; manager approved scope and technology in Gate A on
 2026-09-22 UTC ("go ahead"). Integration and deployment approval remain pending.
 Owner: senior engineer. Suggested label: enhancement. Dependency: CALC-001.
 Branch: `codex/calc-002-integer-addition`, based on the unmerged bootstrap branch.
@@ -58,7 +60,7 @@ tests to CI in the same slice. No placeholder passing tests before behavior exis
 
 Done: requirements satisfied, tests and CI verified, demo recorded, README updated,
 self-review complete, PR reviewed and integration explicitly approved by manager.
-Risks: remote publication pending; numeric expansion needs separate decisions.
+Risks: manager integration approval pending; numeric expansion needs separate decisions.
 
 ## CALC-003 — Refine remaining basic-calculator requirements
 
@@ -98,3 +100,10 @@ Acceptance criteria:
 Verification: actual deployment and browser smoke test. Risks: repository settings,
 Pages availability and permissions remain unverified; do not add external hosting
 or incur cost without manager approval.
+
+## Recorded CI evidence
+
+- Bootstrap `293b306`: [successful run](https://github.com/dolasai-t/CyMas/actions/runs/35931545281).
+- First slice `f52ecf8`: [successful run](https://github.com/dolasai-t/CyMas/actions/runs/35931547776).
+- This documentation synchronization follows those runs. Check the PR checks for
+  any newer head revision; do not treat an older passing run as proof for new code.

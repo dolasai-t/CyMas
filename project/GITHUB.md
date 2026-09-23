@@ -1,14 +1,26 @@
 # GitHub publication and review
 
-Status: issues [#1](https://github.com/dolasai-t/CyMas/issues/1),
-[#2](https://github.com/dolasai-t/CyMas/issues/2),
-[#3](https://github.com/dolasai-t/CyMas/issues/3), and
-[#4](https://github.com/dolasai-t/CyMas/issues/4) are published. Do not run the issue
-creation commands again. Branch pushes, PR publication, and remote CI still await
-completion of GitHub CLI authentication. Browser sign-in succeeded. CLI OAuth
-scopes were explicitly approved; the fresh login awaits GitHub email verification.
-The first token exchange failed with a connection reset. No merge, deployment,
-branch protection, or Pages setting has been changed.
+Status: all four issues and both draft PRs are published. GitHub Issues are the
+canonical work items. Do not rerun the creation commands below; they are retained
+as the original publication procedure.
+
+- Issues: [#1](https://github.com/dolasai-t/CyMas/issues/1),
+  [#2](https://github.com/dolasai-t/CyMas/issues/2),
+  [#3](https://github.com/dolasai-t/CyMas/issues/3),
+  [#4](https://github.com/dolasai-t/CyMas/issues/4).
+- Bootstrap: [draft PR #5](https://github.com/dolasai-t/CyMas/pull/5), targeting main.
+- First slice: [draft PR #6](https://github.com/dolasai-t/CyMas/pull/6), targeting
+  the bootstrap branch. Both published revisions passed CI; WORKBOARD.md links evidence.
+- No merge, deployment, branch protection, or Pages setting was changed.
+
+## Current CLI access
+
+The official CLI was checksum-verified and authenticated after explicit manager
+approval of its OAuth scopes and GitHub email identity verification. Temporary
+executable: `/private/tmp/cymas-gh/gh_2.101.0_macOS_arm64/bin/gh`; use
+`GH_CONFIG_DIR=/private/tmp/cymas-gh-auth` with it. No global Git credential helper
+was changed. Temporary files may disappear; if unavailable, install the official
+CLI and authenticate again. Never write credentials into this repository.
 
 ## Proposed setup
 

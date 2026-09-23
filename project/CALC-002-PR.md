@@ -1,6 +1,7 @@
 # CALC-002: Add two signed whole numbers in the browser
 
-Local work item: CALC-002. GitHub issue and PR: not yet published.
+Work item: [#2](https://github.com/dolasai-t/CyMas/issues/2).
+Draft PR: [#6](https://github.com/dolasai-t/CyMas/pull/6).
 Base: `codex/bootstrap-engineering` (bootstrap approval/merge pending).
 Head: `codex/calc-002-integer-addition`.
 
@@ -44,7 +45,9 @@ The Engineering Manager approved the stack and scope with "go ahead" on
 - Desktop and narrow layouts visually inspected. Browser error/warning logs empty.
 - Accessibility verification covers DOM semantics/focus, not screen-reader speech.
 - Build: not applicable to directly served static assets.
-- Remote CI: **not run**; publication blocked by missing GitHub authentication.
+- Remote CI: repository and application checks passed at `f52ecf8` in
+  [run 35931547776](https://github.com/dolasai-t/CyMas/actions/runs/35931547776).
+  Consult PR checks for revisions after this documentation synchronization.
 
 ## Self-review and limitations
 
@@ -59,8 +62,7 @@ introduced. Screen-reader speech and cross-browser/device coverage remain limite
 
 Run `npm start` and inspect the happy path, invalid input, correction, and narrow
 layout. Compare behavior with PLAN.md's seven approved acceptance criteria.
-Review the diff against the bootstrap branch and the test cases. After publication,
-inspect actual CI on both PRs before approving integration.
+Review the diff against the bootstrap branch and the test cases. Inspect actual CI on both PRs before approving integration.
 This input → logic → feedback slice demonstrates how testable logic can preserve
 arithmetic behavior while the UI evolves.
 
